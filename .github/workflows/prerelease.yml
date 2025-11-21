@@ -1,0 +1,39 @@
+name: 🚀 Pre-release
+
+on:
+    release:
+        types: [ prereleased ]
+
+env:
+    RELEASE_VERSION: ${{ github.event.release.tag_name }}
+
+permissions:
+    id-token: write
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        name: 🚀 Publish to Registry
+        steps:
+            -   name: 👀 Checkout
+                uses: actions/checkout@v4
+
+            -   name: 🍞 Setup Bun
+                uses: oven-sh/setup-bun@v2
+
+            -   name: ✏️ Tag v${{ env.RELEASE_VERSION }}
+                run: |
+                    bun pm version ${{ env.RELEASE_VERSION }} --no-git-tag-version
+
+            -   name: 📦️ Install dependencies
+                run: bun install --frozen-lockfile
+
+            -   name: 🔨 Build
+                run: |
+                    bun run build
+
+            -   name: 🚀 Publish v${{ env.RELEASE_VERSION }}
+                run: |
+                    bun publish --tag next
+                env:
+                    NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}

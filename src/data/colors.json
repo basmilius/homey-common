@@ -1,0 +1,70 @@
+[
+    {
+        "hex": "#ef4444",
+        "label": "color.red"
+    },
+    {
+        "hex": "#f97316",
+        "label": "color.orange"
+    },
+    {
+        "hex": "#f59e0b",
+        "label": "color.amber"
+    },
+    {
+        "hex": "#eab308",
+        "label": "color.yellow"
+    },
+    {
+        "hex": "#84cc16",
+        "label": "color.lime"
+    },
+    {
+        "hex": "#22c55e",
+        "label": "color.green"
+    },
+    {
+        "hex": "#10b981",
+        "label": "color.emerald"
+    },
+    {
+        "hex": "#14b8a6",
+        "label": "color.teal"
+    },
+    {
+        "hex": "#06b6d4",
+        "label": "color.cyan"
+    },
+    {
+        "hex": "#0ea5e9",
+        "label": "color.sky"
+    },
+    {
+        "hex": "#3b82f6",
+        "label": "color.blue"
+    },
+    {
+        "hex": "#6366f1",
+        "label": "color.indigo"
+    },
+    {
+        "hex": "#8b5cf6",
+        "label": "color.violet"
+    },
+    {
+        "hex": "#a855f7",
+        "label": "color.purple"
+    },
+    {
+        "hex": "#d946ef",
+        "label": "color.fuchsia"
+    },
+    {
+        "hex": "#ec4899",
+        "label": "color.pink"
+    },
+    {
+        "hex": "#f43f5e",
+        "label": "color.rose"
+    }
+]

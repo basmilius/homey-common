@@ -1,0 +1,31 @@
+name: 👀 Publish Any Commit
+
+on:
+    push:
+        branches:
+            - '**'
+
+    pull_request:
+        branches:
+            - 'main'
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        name: 🚀 Publish to pkg.pr.new
+        steps:
+            -   name: 👀 Checkout
+                uses: actions/checkout@v4
+
+            -   name: ⚙️ Setup Bun
+                uses: oven-sh/setup-bun@v2
+
+            -   name: 📦️ Install dependencies
+                run: bun install --frozen-lockfile
+
+            -   name: 🔨 Build
+                run: |
+                    bun run build
+
+            -   name: 🚀 Publish
+                run: bunx pkg-pr-new publish
