@@ -15,6 +15,40 @@ export class App<TApp extends App<any>> extends Homey.App {
 
         this.#registry = new Registry<TApp>(this as unknown as TApp);
     }
+
+    async getDevice<TDevice extends Homey.Device>(id: string): Promise<TDevice | null> {
+        const drivers = await this.getDrivers();
+
+        for (const driver of drivers) {
+            const devices = driver.getDevices();
+
+            for (const device of devices) {
+                if (device.getId() === id) {
+                    return device as TDevice;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    async getDevices<TDevice extends Homey.Device>(driverId: string): Promise<TDevice[] | null> {
+        const drivers = await this.getDrivers();
+
+        for (const driver of drivers) {
+            if (driver.id !== driverId) {
+                continue;
+            }
+
+            return driver.getDevices() as TDevice[];
+        }
+
+        return null;
+    }
+
+    async getDrivers(): Promise<Homey.Driver[]> {
+        return Object.values(this.homey.drivers.getDrivers());
+    }
 }
 
 export class Shortcuts<TApp extends App<TApp>> {
