@@ -1,3 +1,4 @@
+// @ts-ignore
 import type Homey from 'homey';
 
 declare module 'homey' {

@@ -3,6 +3,7 @@ import { type App, Shortcuts } from './app';
 import type { AutocompleteProvider, FlowCardType } from './types';
 
 export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.FlowCard, TArgs = unknown, TState = unknown, TResult = unknown> extends Shortcuts<TApp> {
+
     get card(): TCard {
         return this.#card;
     }
@@ -64,6 +65,7 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
 
         throw new Error(`Flow card type ${this.constructor.name} not found.`);
     }
+
 }
 
 export abstract class FlowActionEntity<TApp extends App<TApp>, TArgs = unknown, TState = unknown, TResult = unknown> extends FlowEntity<TApp, Homey.FlowCardAction, TArgs, TState, TResult> {
@@ -73,12 +75,15 @@ export abstract class FlowConditionEntity<TApp extends App<TApp>, TArgs = unknow
 }
 
 export abstract class FlowTriggerEntity<TApp extends App<TApp>, TArgs = unknown, TState = unknown> extends FlowEntity<TApp, Homey.FlowCardTrigger, TArgs, TState, boolean> {
+
     async trigger(state: TState, tokens?: Record<string, unknown>): Promise<any> {
         return this.card.trigger(tokens, state as object);
     }
+
 }
 
 export abstract class FlowAutocompleteProvider<TApp extends App<TApp>> extends Shortcuts<TApp> {
+
     abstract find(query: string, args: Record<string, unknown>): Promise<Homey.FlowCard.ArgumentAutocompleteResults>;
 
     async update(): Promise<void> {
@@ -88,4 +93,5 @@ export abstract class FlowAutocompleteProvider<TApp extends App<TApp>> extends S
         this.homey.log(`onInit() -> Autocomplete provider ${(this as any).autocompleteId} has been registered.`);
         await this.update();
     }
+
 }

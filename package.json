@@ -1,7 +1,7 @@
 {
     "name": "@basmilius/homey-common",
     "description": "Common code shared across my Homey apps.",
-    "version": "0.0.13",
+    "version": "0.0.0",
     "license": "MIT",
     "funding": "https://github.com/sponsors/basmilius",
     "author": {

@@ -38,15 +38,15 @@ export type Language =
     | 'ru'
     | 'sv';
 
-export type ApiRequest<TApp> = {
+export type ApiRequest<TApp, TBody = never, TParams = never, TQuery = never> = {
     readonly homey: Homey & {
         readonly app: TApp;
     };
-    readonly body: any;
-    readonly params: Record<string, unknown>;
-    readonly query: Record<string, string>;
+    readonly body: TBody;
+    readonly params: TParams;
+    readonly query: TQuery;
 };
 
-export type WidgetApiRequest<TApp> = ApiRequest<TApp> & {
+export type WidgetApiRequest<TApp, TBody = never, TParams = never, TQuery = never> = ApiRequest<TApp, TBody, TParams, TQuery> & {
     readonly widgetInstanceId: string;
 };

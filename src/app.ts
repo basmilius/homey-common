@@ -1,9 +1,11 @@
 import Homey from 'homey';
 import type HomeyNS from 'homey/lib/Homey';
+import type { Device, Driver } from './device';
 import { Registry } from './registry';
 import type { Language } from './types';
 
 export class App<TApp extends App<any>> extends Homey.App {
+
     get registry(): Registry<TApp> {
         return this.#registry;
     }
@@ -16,15 +18,15 @@ export class App<TApp extends App<any>> extends Homey.App {
         this.#registry = new Registry<TApp>(this as unknown as TApp);
     }
 
-    async getDevice<TDevice extends Homey.Device>(id: string): Promise<TDevice | null> {
+    async getDevice<TDevice extends Device<TApp>>(id: string): Promise<TDevice | null> {
         const drivers = await this.getDrivers();
 
         for (const driver of drivers) {
-            const devices = driver.getDevices();
+            const devices = await this.getDevices<TDevice>(driver.id);
 
             for (const device of devices) {
-                if (device.getId() === id) {
-                    return device as TDevice;
+                if (device.id === id) {
+                    return device;
                 }
             }
         }
@@ -32,7 +34,7 @@ export class App<TApp extends App<any>> extends Homey.App {
         return null;
     }
 
-    async getDevices<TDevice extends Homey.Device>(driverId: string): Promise<TDevice[] | null> {
+    async getDevices<TDevice extends Device<TApp>>(driverId: string): Promise<TDevice[] | null> {
         const drivers = await this.getDrivers();
 
         for (const driver of drivers) {
@@ -46,12 +48,14 @@ export class App<TApp extends App<any>> extends Homey.App {
         return null;
     }
 
-    async getDrivers(): Promise<Homey.Driver[]> {
-        return Object.values(this.homey.drivers.getDrivers());
+    async getDrivers(): Promise<Driver<TApp>[]> {
+        return Object.values(this.homey.drivers.getDrivers()) as Driver<TApp>[];
     }
+
 }
 
 export class Shortcuts<TApp extends App<TApp>> {
+
     get app(): TApp {
         return this.#app;
     }
@@ -119,4 +123,5 @@ export class Shortcuts<TApp extends App<TApp>> {
     setTimeout(callback: Function, ms: number): NodeJS.Timeout {
         return this.homey.setTimeout(callback, ms);
     }
+
 }

@@ -3,6 +3,7 @@ import type { FlowActionEntity, FlowAutocompleteProvider, FlowConditionEntity, F
 import type { Action, AutocompleteProvider, Condition, Trigger } from './types';
 
 export class Registry<TApp extends App<TApp>> {
+
     get actions(): FlowActionEntity<TApp>[] {
         return this.#actions;
     }
@@ -67,4 +68,5 @@ export class Registry<TApp extends App<TApp>> {
     findTrigger<TEntity extends FlowTriggerEntity<TApp>>(trigger: Trigger<TApp, TEntity>): TEntity | undefined {
         return this.#triggers.find(a => a instanceof trigger) as TEntity;
     }
+
 }

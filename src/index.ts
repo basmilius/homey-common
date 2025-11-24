@@ -25,6 +25,11 @@ export {
 } from './decorator';
 
 export {
+    Device,
+    Driver
+} from './device';
+
+export {
     FlowEntity,
     FlowActionEntity,
     FlowAutocompleteProvider,
