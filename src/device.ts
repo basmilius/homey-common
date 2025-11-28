@@ -13,6 +13,10 @@ export class Device<TApp extends App<TApp>> extends Homey.Device {
         return this.getId();
     }
 
+    get name(): string {
+        return this.getName();
+    }
+
     get dashboards(): HomeyNS['dashboards'] {
         return this.homey.dashboards;
     }
@@ -43,6 +47,14 @@ export class Device<TApp extends App<TApp>> extends Homey.Device {
 
             await this.removeCapability(capability);
         }
+    }
+
+    public error(...args: any) {
+        super.error(`[${this.driver.id}: ${this.name}]`, ...args);
+    }
+
+    public log(...args: any) {
+        super.log(`[${this.driver.id}: ${this.name}]`, ...args);
     }
 
 }
