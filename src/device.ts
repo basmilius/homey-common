@@ -25,6 +25,26 @@ export class Device<TApp extends App<TApp>> extends Homey.Device {
         return this.homey.i18n.getLanguage() as Language;
     }
 
+    async removeOldCapabilities(capabilities: string[]): Promise<void> {
+        const currentCapabilities = this.getCapabilities();
+
+        for (const capability of capabilities) {
+            if (currentCapabilities.includes(capability)) {
+                continue;
+            }
+
+            await this.addCapability(capability);
+        }
+
+        for (const capability of currentCapabilities) {
+            if (capabilities.includes(capability)) {
+                continue;
+            }
+
+            await this.removeCapability(capability);
+        }
+    }
+
 }
 
 export class Driver<TApp extends App<TApp>> extends Homey.Driver {
