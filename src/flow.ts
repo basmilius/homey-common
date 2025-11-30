@@ -60,6 +60,10 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
             return this.flow.getConditionCard((this as any).conditionId) as unknown as TCard;
         }
 
+        if (this instanceof FlowDeviceTriggerEntity) {
+            return this.flow.getDeviceTriggerCard((this as any).triggerId) as unknown as TCard;
+        }
+
         if (this instanceof FlowTriggerEntity) {
             return this.flow.getTriggerCard((this as any).triggerId) as unknown as TCard;
         }
@@ -75,7 +79,7 @@ export abstract class FlowActionEntity<TApp extends App<TApp>, TArgs = unknown, 
 export abstract class FlowConditionEntity<TApp extends App<TApp>, TArgs = unknown, TState = unknown> extends FlowEntity<TApp, Homey.FlowCardCondition, TArgs, TState, boolean> {
 }
 
-export abstract class FlowDeviceTriggerEntity<TApp extends App<TApp>, TDevice extends Device<TApp>, TArgs = unknown, TState = unknown, TTokens = unknown> extends FlowEntity<TApp, Homey.FlowCardTriggerDevice, TArgs, TState, boolean> {
+export abstract class FlowDeviceTriggerEntity<TApp extends App<TApp>, TDevice extends Device<TApp, any>, TArgs = unknown, TState = unknown, TTokens = unknown> extends FlowEntity<TApp, Homey.FlowCardTriggerDevice, TArgs, TState, boolean> {
 
     async trigger(device: TDevice, state: TState, tokens?: TTokens): Promise<any> {
         return this.card.trigger(device, tokens as object, state as object);
