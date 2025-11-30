@@ -34,6 +34,7 @@ export {
     FlowActionEntity,
     FlowAutocompleteProvider,
     FlowConditionEntity,
+    FlowDeviceTriggerEntity,
     FlowTriggerEntity
 } from './flow';
 

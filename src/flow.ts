@@ -1,5 +1,6 @@
 import type Homey from 'homey';
 import { type App, Shortcuts } from './app';
+import type { Device } from './device';
 import type { AutocompleteProvider, FlowCardType } from './types';
 
 export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.FlowCard, TArgs = unknown, TState = unknown, TResult = unknown> extends Shortcuts<TApp> {
@@ -74,10 +75,18 @@ export abstract class FlowActionEntity<TApp extends App<TApp>, TArgs = unknown, 
 export abstract class FlowConditionEntity<TApp extends App<TApp>, TArgs = unknown, TState = unknown> extends FlowEntity<TApp, Homey.FlowCardCondition, TArgs, TState, boolean> {
 }
 
-export abstract class FlowTriggerEntity<TApp extends App<TApp>, TArgs = unknown, TState = unknown> extends FlowEntity<TApp, Homey.FlowCardTrigger, TArgs, TState, boolean> {
+export abstract class FlowDeviceTriggerEntity<TApp extends App<TApp>, TDevice extends Device<TApp>, TArgs = unknown, TState = unknown, TTokens = unknown> extends FlowEntity<TApp, Homey.FlowCardTriggerDevice, TArgs, TState, boolean> {
 
-    async trigger(state: TState, tokens?: Record<string, unknown>): Promise<any> {
-        return this.card.trigger(tokens, state as object);
+    async trigger(device: TDevice, state: TState, tokens?: TTokens): Promise<any> {
+        return this.card.trigger(device, tokens as object, state as object);
+    }
+
+}
+
+export abstract class FlowTriggerEntity<TApp extends App<TApp>, TArgs = unknown, TState = unknown, TTokens = unknown> extends FlowEntity<TApp, Homey.FlowCardTrigger, TArgs, TState, boolean> {
+
+    async trigger(state: TState, tokens?: TTokens): Promise<any> {
+        return this.card.trigger(tokens as object, state as object);
     }
 
 }
