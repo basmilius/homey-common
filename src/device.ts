@@ -3,10 +3,14 @@ import type HomeyNS from 'homey/lib/Homey';
 import type { App } from './app';
 import type { Language } from './types';
 
-export class Device<TApp extends App<TApp>> extends Homey.Device {
+export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extends Homey.Device {
 
     get app(): TApp {
         return this.homey.app as TApp;
+    }
+
+    get appDriver(): TDriver {
+        return this.driver as TDriver;
     }
 
     get id(): string {
