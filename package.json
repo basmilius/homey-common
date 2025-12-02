@@ -44,8 +44,7 @@
         "./*": "./*"
     },
     "dependencies": {
-        "@types/luxon": "^3.7.1",
-        "luxon": "^3.7.2"
+        "@types/luxon": "^3.7.1"
     },
     "devDependencies": {
         "@basmilius/tools": "^2.15.0",
@@ -54,6 +53,7 @@
         "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
         "@types/luxon": "^3.7.1",
         "@types/node": "^24.10.1",
+        "luxon": "^3.7.2",
         "typescript": "^5.9.3"
     }
 }
