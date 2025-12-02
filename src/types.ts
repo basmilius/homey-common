@@ -8,7 +8,7 @@ export type Constructor<T = {}> = new (...args: any[]) => T;
 export type Action<TApp extends App<TApp>, TEntity extends FlowActionEntity<TApp>> = new (app: TApp) => TEntity;
 export type AutocompleteProvider<TApp extends App<TApp>, TEntity extends FlowAutocompleteProvider<TApp>> = new (app: TApp) => TEntity;
 export type Condition<TApp extends App<TApp>, TEntity extends FlowConditionEntity<TApp>> = new (app: TApp) => TEntity;
-export type DeviceTrigger<TApp extends App<TApp>, TDevice extends Device<TApp>, TEntity extends FlowDeviceTriggerEntity<TApp, TDevice>> = new (app: TApp) => TEntity;
+export type DeviceTrigger<TApp extends App<TApp>, TDevice extends Device<TApp, any>, TEntity extends FlowDeviceTriggerEntity<TApp, TDevice>> = new (app: TApp) => TEntity;
 export type Trigger<TApp extends App<TApp>, TEntity extends FlowTriggerEntity<TApp>> = new (app: TApp) => TEntity;
 
 export type FlowCardType =

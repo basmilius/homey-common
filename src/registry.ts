@@ -55,7 +55,7 @@ export class Registry<TApp extends App<TApp>> {
         this.#conditions.push(new condition(this.#app));
     }
 
-    deviceTrigger<TDevice extends Device<TApp>, TEntity extends FlowDeviceTriggerEntity<TApp, TDevice>>(trigger: DeviceTrigger<TApp, TDevice, TEntity>): void {
+    deviceTrigger<TDevice extends Device<TApp, any>, TEntity extends FlowDeviceTriggerEntity<TApp, TDevice>>(trigger: DeviceTrigger<TApp, TDevice, TEntity>): void {
         this.#deviceTriggers.push(new trigger(this.#app));
     }
 
@@ -75,7 +75,7 @@ export class Registry<TApp extends App<TApp>> {
         return this.#conditions.find(a => a instanceof condition) as TEntity;
     }
 
-    findDeviceTrigger<TDevice extends Device<TApp>, TEntity extends FlowDeviceTriggerEntity<TApp, TDevice>>(trigger: DeviceTrigger<TApp, TDevice, TEntity>): TEntity | undefined {
+    findDeviceTrigger<TDevice extends Device<TApp, any>, TEntity extends FlowDeviceTriggerEntity<TApp, TDevice>>(trigger: DeviceTrigger<TApp, TDevice, TEntity>): TEntity | undefined {
         return this.#deviceTriggers.find(a => a instanceof trigger) as TEntity;
     }
 

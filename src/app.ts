@@ -18,7 +18,7 @@ export class App<TApp extends App<any>> extends Homey.App {
         this.#registry = new Registry<TApp>(this as unknown as TApp);
     }
 
-    async getDevice<TDevice extends Device<TApp>>(id: string): Promise<TDevice | null> {
+    async getDevice<TDevice extends Device<TApp, any>>(id: string): Promise<TDevice | null> {
         const drivers = await this.getDrivers();
 
         for (const driver of drivers) {
@@ -34,7 +34,7 @@ export class App<TApp extends App<any>> extends Homey.App {
         return null;
     }
 
-    async getDevices<TDevice extends Device<TApp>>(driverId: string): Promise<TDevice[] | null> {
+    async getDevices<TDevice extends Device<TApp, any>>(driverId: string): Promise<TDevice[] | null> {
         const drivers = await this.getDrivers();
 
         for (const driver of drivers) {
@@ -91,9 +91,13 @@ export class Shortcuts<TApp extends App<TApp>> {
     }
 
     async notify(message: string): Promise<void> {
-        await this.homey.notifications.createNotification({
-            excerpt: message
-        });
+        try {
+            await this.homey.notifications.createNotification({
+                excerpt: message
+            });
+        } catch (err) {
+            this.log('Tried to notify the timeline, but notifications are probably disabled.', err);
+        }
     }
 
     log(...args: any[]): void {
