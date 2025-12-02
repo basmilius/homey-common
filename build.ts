@@ -4,7 +4,7 @@ await build({
     entrypoints: ['src/index.ts'],
     format: 'cjs',
     target: 'browser',
-    packages: 'external',
+    external: ['homey'],
     plugins: [
         dts(),
         copy('src/types.ts', 'dist/types.d.ts')
