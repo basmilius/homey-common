@@ -4,9 +4,6 @@
   "workspaces": {
     "": {
       "name": "@basmilius/homey-common",
-      "dependencies": {
-        "@types/luxon": "^3.7.1",
-      },
       "devDependencies": {
         "@basmilius/tools": "^2.15.0",
         "@tsconfig/node18": "^18.2.6",
