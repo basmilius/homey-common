@@ -7,6 +7,7 @@ export type {
     ApiRequest,
     Color,
     Constructor,
+    FlowCard,
     FlowCardType,
     Icon,
     Language,
@@ -14,6 +15,7 @@ export type {
     Action,
     AutocompleteProvider,
     Condition,
+    DeviceTrigger,
     Trigger
 } from './types';
 

@@ -3,9 +3,7 @@ import debounce from '@basmilius/utils/src/debounce.ts';
 import type Homey from 'homey';
 import { type App, Shortcuts } from './app';
 import type { Device } from './device';
-import type { AutocompleteProvider, FlowCardType } from './types';
-
-type FlowCard = Homey.FlowCardAction | Homey.FlowCardCondition | Homey.FlowCardTrigger;
+import type { AutocompleteProvider, FlowCard, FlowCardType } from './types';
 
 export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.FlowCard, TArgs = unknown, TState = unknown, TResult = unknown> extends Shortcuts<TApp> {
 
