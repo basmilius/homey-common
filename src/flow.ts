@@ -5,6 +5,8 @@ import { type App, Shortcuts } from './app';
 import type { Device } from './device';
 import type { AutocompleteProvider, FlowCardType } from './types';
 
+type FlowCard = Homey.FlowCardAction | Homey.FlowCardCondition | Homey.FlowCardTrigger;
+
 export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.FlowCard, TArgs = unknown, TState = unknown, TResult = unknown> extends Shortcuts<TApp> {
 
     get card(): TCard {
@@ -121,6 +123,38 @@ export abstract class FlowAutocompleteProvider<TApp extends App<TApp>> extends S
     async onInit(): Promise<void> {
         this.homey.log(`onInit() -> Autocomplete provider ${(this as any).autocompleteId} has been registered.`);
         await this.update();
+    }
+
+}
+
+export abstract class FlowAutocompleteArgumentProvider<TApp extends App<TApp>> extends FlowAutocompleteProvider<TApp> {
+
+    get values(): string[] {
+        return this.#values;
+    }
+
+    #cards: FlowCard[] = [];
+    #values: string[] = [];
+
+    abstract getCards(): FlowCard[];
+
+    abstract mapArgument(value: any): string;
+
+    async onInit(): Promise<void> {
+        this.#cards = this.getCards();
+
+        await super.onInit();
+    }
+
+    async update(): Promise<void> {
+        this.#values = await Promise
+            .allSettled(this.#cards.map(card => card.getArgumentValues()))
+            .then(allValues => allValues
+                .filter(values => values.status === 'fulfilled')
+                .map(values => values.value)
+                .reduce((acc, curr) => acc.concat(curr))
+                .map(this.mapArgument)
+                .filter((value, index, arr) => arr.indexOf(value) === index));
     }
 
 }

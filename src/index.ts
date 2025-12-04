@@ -38,6 +38,7 @@ export {
     FlowEntity,
     FlowActionEntity,
     FlowAutocompleteProvider,
+    FlowAutocompleteArgumentProvider,
     FlowConditionEntity,
     FlowDeviceTriggerEntity,
     FlowTriggerEntity
