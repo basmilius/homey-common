@@ -44,7 +44,7 @@ export class Registry<TApp extends App<TApp>> {
         const action = this.#app.homey.flow.getActionCard(id);
         action.registerRunListener(onRun);
 
-        this.#app.homey.log(`Flow card actionFunction#${id} has been registered.`);
+        this.#app.homey.log(`onInit() -> Flow card actionFunction#${id} has been registered.`);
     }
 
     autocompleteProvider<TEntity extends FlowAutocompleteProvider<TApp>>(autocompleteProvider: AutocompleteProvider<TApp, TEntity>): void {

@@ -1,3 +1,5 @@
+// @ts-ignore
+import debounce from '@basmilius/utils/src/debounce.ts';
 import type Homey from 'homey';
 import { type App, Shortcuts } from './app';
 import type { Device } from './device';
@@ -18,6 +20,7 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
     }
 
     readonly #card: TCard;
+    #autocompleteProvider?: FlowAutocompleteProvider<TApp>;
 
     constructor(app: TApp) {
         super(app);
@@ -39,6 +42,7 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
     abstract onRun(args: TArgs, state: TState): Promise<TResult>;
 
     async onUpdate(): Promise<void> {
+        await this.#autocompleteProvider?.triggerUpdate();
     }
 
     registerAutocomplete<TAutocomplete extends FlowAutocompleteProvider<TApp>>(name: string, autocompleteProvider: AutocompleteProvider<TApp, TAutocomplete>): void {
@@ -48,6 +52,7 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
             throw new Error(`Unable to register autocomplete for ${this.type}#${this.id}. The provider was not registered.`);
         }
 
+        this.#autocompleteProvider = provider;
         this.#card.registerArgumentAutocompleteListener(name, provider.find.bind(provider));
     }
 
@@ -97,7 +102,18 @@ export abstract class FlowTriggerEntity<TApp extends App<TApp>, TArgs = unknown,
 
 export abstract class FlowAutocompleteProvider<TApp extends App<TApp>> extends Shortcuts<TApp> {
 
+    // noinspection TypeScriptAbstractClassConstructorCanBeMadeProtected
+    constructor(app: TApp) {
+        super(app);
+
+        this.triggerUpdate = debounce(this.triggerUpdate, 300, this) as typeof this.triggerUpdate;
+    }
+
     abstract find(query: string, args: Record<string, unknown>): Promise<Homey.FlowCard.ArgumentAutocompleteResults>;
+
+    async triggerUpdate(): Promise<void> {
+        await this.update();
+    }
 
     async update(): Promise<void> {
     }
