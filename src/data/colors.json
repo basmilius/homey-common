@@ -16,55 +16,127 @@
         "label": "color.yellow"
     },
     {
+        "hex": "#c4b106",
+        "label": "color.citron"
+    },
+    {
         "hex": "#84cc16",
         "label": "color.lime"
+    },
+    {
+        "hex": "#52c41a",
+        "label": "color.grass"
     },
     {
         "hex": "#22c55e",
         "label": "color.green"
     },
     {
+        "hex": "#17c078",
+        "label": "color.spring"
+    },
+    {
         "hex": "#10b981",
         "label": "color.emerald"
+    },
+    {
+        "hex": "#12b894",
+        "label": "color.mint"
     },
     {
         "hex": "#14b8a6",
         "label": "color.teal"
     },
     {
+        "hex": "#0cb7bd",
+        "label": "color.turquoise"
+    },
+    {
         "hex": "#06b6d4",
         "label": "color.cyan"
+    },
+    {
+        "hex": "#09aee6",
+        "label": "color.azure"
     },
     {
         "hex": "#0ea5e9",
         "label": "color.sky"
     },
     {
+        "hex": "#2494f0",
+        "label": "color.ocean"
+    },
+    {
         "hex": "#3b82f6",
         "label": "color.blue"
+    },
+    {
+        "hex": "#4f72f3",
+        "label": "color.royal"
     },
     {
         "hex": "#6366f1",
         "label": "color.indigo"
     },
     {
+        "hex": "#7761f3",
+        "label": "color.iris"
+    },
+    {
         "hex": "#8b5cf6",
         "label": "color.violet"
+    },
+    {
+        "hex": "#9a58f7",
+        "label": "color.grape"
     },
     {
         "hex": "#a855f7",
         "label": "color.purple"
     },
     {
+        "hex": "#c24bfb",
+        "label": "color.orchid"
+    },
+    {
         "hex": "#d946ef",
         "label": "color.fuchsia"
+    },
+    {
+        "hex": "#e547d4",
+        "label": "color.magenta"
     },
     {
         "hex": "#ec4899",
         "label": "color.pink"
     },
     {
+        "hex": "#f0436c",
+        "label": "color.watermelon"
+    },
+    {
         "hex": "#f43f5e",
         "label": "color.rose"
+    },
+    {
+        "hex": "#64748b",
+        "label": "color.slate"
+    },
+    {
+        "hex": "#6b7280",
+        "label": "color.gray"
+    },
+    {
+        "hex": "#71717a",
+        "label": "color.zinc"
+    },
+    {
+        "hex": "#737373",
+        "label": "color.neutral"
+    },
+    {
+        "hex": "#78716c",
+        "label": "color.stone"
     }
 ]
