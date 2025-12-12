@@ -1,9 +1,8 @@
-// @ts-ignore
-import debounce from '@basmilius/utils/src/debounce.ts';
 import type Homey from 'homey';
 import { type App, Shortcuts } from './app';
 import type { Device } from './device';
 import type { AutocompleteProvider, FlowCard, FlowCardType } from './types';
+import { debounce } from './utils';
 
 export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.FlowCard, TArgs = unknown, TState = unknown, TResult = unknown> extends Shortcuts<TApp> {
 
