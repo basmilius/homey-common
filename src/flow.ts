@@ -45,7 +45,7 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
     }
 
     log(...args: any[]): void {
-        this.homey.log(`${this.type}#${this.id}`, ...args);
+        this.homey.log(`[${this.type}#${this.id}]`, ...args);
     }
 
     registerAutocomplete<TAutocomplete extends FlowAutocompleteProvider<TApp>>(name: string, autocompleteProvider: AutocompleteProvider<TApp, TAutocomplete>): void {
@@ -135,7 +135,7 @@ export abstract class FlowAutocompleteProvider<TApp extends App<TApp>> extends S
     }
 
     log(...args: any[]): void {
-        this.homey.log(`autocompleteProvider#${(this as any).autocompleteId}`, ...args);
+        this.homey.log(`[autocomplete#${(this as any).autocompleteId}]`, ...args);
     }
 
 }
