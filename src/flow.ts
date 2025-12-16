@@ -80,7 +80,7 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
     }
 
     #run(args: TArgs, state: TState): Promise<TResult> {
-        this.log('Executing...', args, state);
+        this.log('Executing...', {args, state});
         const result = this.onRun(args, state);
         this.log('Done.');
 
