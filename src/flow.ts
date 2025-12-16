@@ -32,16 +32,20 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
     }
 
     async onInit(): Promise<void> {
-        this.#card.registerRunListener(this.onRun.bind(this));
+        this.#card.registerRunListener((a, s) => this.#run(a, s));
         this.#card.on('update', this.onUpdate.bind(this));
 
-        this.log(`onInit() -> Flow card ${this.type}#${this.id} has been registered.`);
+        this.log('Registered.');
     }
 
     abstract onRun(args: TArgs, state: TState): Promise<TResult>;
 
     async onUpdate(): Promise<void> {
         await this.#autocompleteProvider?.triggerUpdate();
+    }
+
+    log(...args: any[]): void {
+        this.homey.log(`${this.type}#${this.id}`, ...args);
     }
 
     registerAutocomplete<TAutocomplete extends FlowAutocompleteProvider<TApp>>(name: string, autocompleteProvider: AutocompleteProvider<TApp, TAutocomplete>): void {
@@ -73,6 +77,14 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
         }
 
         throw new Error(`Flow card type ${this.constructor.name} not found.`);
+    }
+
+    #run(args: TArgs, state: TState): Promise<TResult> {
+        this.log('Executing...', args, state);
+        const result = this.onRun(args, state);
+        this.log('Done.');
+
+        return result;
     }
 
 }
@@ -108,6 +120,11 @@ export abstract class FlowAutocompleteProvider<TApp extends App<TApp>> extends S
         this.triggerUpdate = debounce(this.triggerUpdate, 300, this) as typeof this.triggerUpdate;
     }
 
+    async onInit(): Promise<void> {
+        this.homey.log('Registered.');
+        await this.update();
+    }
+
     abstract find(query: string, args: Record<string, unknown>): Promise<Homey.FlowCard.ArgumentAutocompleteResults>;
 
     async triggerUpdate(): Promise<void> {
@@ -117,9 +134,8 @@ export abstract class FlowAutocompleteProvider<TApp extends App<TApp>> extends S
     async update(): Promise<void> {
     }
 
-    async onInit(): Promise<void> {
-        this.homey.log(`onInit() -> Autocomplete provider ${(this as any).autocompleteId} has been registered.`);
-        await this.update();
+    log(...args: any[]): void {
+        this.homey.log(`autocompleteProvider#${(this as any).autocompleteId}`, ...args);
     }
 
 }
