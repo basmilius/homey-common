@@ -121,8 +121,8 @@ export abstract class FlowAutocompleteProvider<TApp extends App<TApp>> extends S
     }
 
     async onInit(): Promise<void> {
-        this.homey.log('Registered.');
         await this.update();
+        this.log('Registered.');
     }
 
     abstract find(query: string, args: Record<string, unknown>): Promise<Homey.FlowCard.ArgumentAutocompleteResults>;
