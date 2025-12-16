@@ -54,11 +54,11 @@ export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extend
     }
 
     public error(...args: any) {
-        super.error(`[${this.driver.id}: ${this.name}]`, ...args);
+        super.error(`[${this.driver.id} ➔ ${this.name}]`, ...args);
     }
 
     public log(...args: any) {
-        super.log(`[${this.driver.id}: ${this.name}]`, ...args);
+        super.log(`[${this.driver.id} ➔ ${this.name}]`, ...args);
     }
 
 }

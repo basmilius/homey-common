@@ -101,7 +101,7 @@ export class Shortcuts<TApp extends App<TApp>> {
     }
 
     log(...args: any[]): void {
-        this.homey.log(...args);
+        this.homey.log(`[${this.constructor.name}]`, ...args);
     }
 
     realtime(event: string, data: any = undefined): void {
