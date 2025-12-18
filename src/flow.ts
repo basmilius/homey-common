@@ -32,7 +32,7 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
     }
 
     async onInit(): Promise<void> {
-        this.#card.registerRunListener((a, s) => this.#run(a, s));
+        this.#card.registerRunListener(this.onRun.bind(this));
         this.#card.on('update', this.onUpdate.bind(this));
 
         this.log('Registered.');
@@ -77,14 +77,6 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
         }
 
         throw new Error(`Flow card type ${this.constructor.name} not found.`);
-    }
-
-    #run(args: TArgs, state: TState): Promise<TResult> {
-        this.log('Executing...', {args, state});
-        const result = this.onRun(args, state);
-        this.log('Done.');
-
-        return result;
     }
 
 }
