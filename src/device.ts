@@ -63,6 +63,50 @@ export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extend
 
 }
 
+export class DeviceMDNSSD<TApp extends App<TApp>, TDriver extends Driver<TApp>> extends Device<TApp, TDriver> {
+    get discoveryId(): string {
+        throw new Error('Not implemented');
+    }
+
+    get discoveryStrategies(): string[] {
+        throw new Error('Not implemented');
+    }
+
+    async onInit(): Promise<void> {
+        for (const strategyKey of this.discoveryStrategies) {
+            const strategy = this.homey.discovery.getStrategy(strategyKey);
+            const results = strategy.getDiscoveryResults();
+
+            for (const [id, result] of Object.entries(results)) {
+                if (id !== this.discoveryId) {
+                    continue;
+                }
+
+                await this.#setDiscoveryResult(strategyKey, result as Homey.DiscoveryResultMDNSSD);
+            }
+
+            strategy.on('result', async result => {
+                if (result.id !== this.discoveryId) {
+                    return;
+                }
+
+                await this.#setDiscoveryResult(strategyKey, result);
+                this.log(strategyKey, result);
+            });
+        }
+
+        await super.onInit();
+    }
+
+    async onDeviceDiscoveryResult(strategy: string, result: Homey.DiscoveryResultMDNSSD): Promise<void> {
+        this.log('Got a discovery update', strategy, result);
+    }
+
+    async #setDiscoveryResult(strategy: string, result: Homey.DiscoveryResultMDNSSD): Promise<void> {
+        await this.onDeviceDiscoveryResult(strategy, result);
+    }
+}
+
 export class Driver<TApp extends App<TApp>> extends Homey.Driver {
 
     get app(): TApp {
