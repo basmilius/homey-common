@@ -88,9 +88,15 @@ export class DeviceMDNSSD<TApp extends App<TApp>, TDriver extends Driver<TApp>> 
         throw new Error('Not implemented');
     }
 
+    get discoveryResults(): Record<string, Homey.DiscoveryResultMDNSSD> {
+        return this.#results;
+    }
+
     get discoveryStrategies(): string[] {
         throw new Error('Not implemented');
     }
+
+    readonly #results: Record<string, Homey.DiscoveryResultMDNSSD> = {};
 
     async onInit(): Promise<void> {
         for (const strategyKey of this.discoveryStrategies) {
@@ -123,6 +129,8 @@ export class DeviceMDNSSD<TApp extends App<TApp>, TDriver extends Driver<TApp>> 
     }
 
     async #setDiscoveryResult(strategy: string, result: Homey.DiscoveryResultMDNSSD): Promise<void> {
+        this.#results[strategy] = result;
+
         await this.onDeviceDiscoveryResult(strategy, result);
     }
 }
