@@ -61,6 +61,26 @@ export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extend
         super.log(`[${this.driver.id} ➔ ${this.name}]`, ...args);
     }
 
+    async setAvailable(): Promise<void> {
+        // note: This function is overridden mainly for the Apple TV & HomePod app, sometimes
+        //  this function gets called at the same time the device is being deleted.
+        try {
+            await super.setAvailable();
+        } catch (err) {
+            this.app.log('Error while setting device available', err);
+        }
+    }
+
+    async setUnavailable(message?: string | null | undefined): Promise<void> {
+        // note: This function is overridden mainly for the Apple TV & HomePod app, sometimes
+        //  this function gets called at the same time the device is being deleted.
+        try {
+            await super.setUnavailable(message);
+        } catch (err) {
+            this.app.log('Error while setting device unavailable', err);
+        }
+    }
+
 }
 
 export class DeviceMDNSSD<TApp extends App<TApp>, TDriver extends Driver<TApp>> extends Device<TApp, TDriver> {
