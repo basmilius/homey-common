@@ -132,18 +132,18 @@ export abstract class FlowAutocompleteProvider<TApp extends App<TApp>> extends S
 
 }
 
-export abstract class FlowAutocompleteArgumentProvider<TApp extends App<TApp>> extends FlowAutocompleteProvider<TApp> {
+export abstract class FlowAutocompleteArgumentProvider<TApp extends App<TApp>, TValue = string> extends FlowAutocompleteProvider<TApp> {
 
-    get values(): string[] {
+    get values(): TValue[] {
         return this.#values;
     }
 
     #cards: FlowCard[] = [];
-    #values: string[] = [];
+    #values: TValue[] = [];
 
     abstract getCards(): FlowCard[];
 
-    abstract mapArgument(value: any): string;
+    abstract mapArgument(value: any): TValue;
 
     async onInit(): Promise<void> {
         this.#cards = this.getCards();
