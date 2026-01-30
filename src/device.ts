@@ -99,17 +99,10 @@ export class DeviceMDNSSD<TApp extends App<TApp>, TDriver extends Driver<TApp>> 
     readonly #results: Record<string, Homey.DiscoveryResultMDNSSD> = {};
 
     async onInit(): Promise<void> {
+        await this.updateDiscoveryResults();
+
         for (const strategyKey of this.discoveryStrategies) {
             const strategy = this.homey.discovery.getStrategy(strategyKey);
-            const results = strategy.getDiscoveryResults();
-
-            for (const [id, result] of Object.entries(results)) {
-                if (id !== this.discoveryId) {
-                    continue;
-                }
-
-                await this.#setDiscoveryResult(strategyKey, result as Homey.DiscoveryResultMDNSSD);
-            }
 
             strategy.on('result', async result => {
                 if (result.id !== this.discoveryId) {
@@ -126,6 +119,21 @@ export class DeviceMDNSSD<TApp extends App<TApp>, TDriver extends Driver<TApp>> 
 
     async onDeviceDiscoveryResult(strategy: string, result: Homey.DiscoveryResultMDNSSD): Promise<void> {
         this.log('Got a discovery update', strategy, result);
+    }
+
+    async updateDiscoveryResults(): Promise<void> {
+        for (const strategyKey of this.discoveryStrategies) {
+            const strategy = this.homey.discovery.getStrategy(strategyKey);
+            const results = strategy.getDiscoveryResults();
+
+            for (const [id, result] of Object.entries(results)) {
+                if (id !== this.discoveryId) {
+                    continue;
+                }
+
+                await this.#setDiscoveryResult(strategyKey, result as Homey.DiscoveryResultMDNSSD);
+            }
+        }
     }
 
     async #setDiscoveryResult(strategy: string, result: Homey.DiscoveryResultMDNSSD): Promise<void> {
