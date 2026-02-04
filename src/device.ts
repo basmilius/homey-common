@@ -25,6 +25,10 @@ export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extend
         return this.homey.dashboards;
     }
 
+    get discovery(): HomeyNS['discovery'] {
+        return this.homey.discovery;
+    }
+
     get flow(): HomeyNS['flow'] {
         return this.homey.flow;
     }
@@ -91,6 +95,10 @@ export class Driver<TApp extends App<TApp>> extends Homey.Driver {
 
     get dashboards(): HomeyNS['dashboards'] {
         return this.homey.dashboards;
+    }
+
+    get discovery(): HomeyNS['discovery'] {
+        return this.homey.discovery;
     }
 
     get flow(): HomeyNS['flow'] {
