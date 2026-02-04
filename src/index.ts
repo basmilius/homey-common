@@ -33,7 +33,6 @@ export {
 
 export {
     Device,
-    DeviceMDNSSD,
     Driver
 } from './device';
 

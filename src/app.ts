@@ -72,6 +72,10 @@ export class Shortcuts<TApp extends App<TApp>> {
         return this.homey.dashboards;
     }
 
+    get discovery(): HomeyNS['discovery'] {
+        return this.homey.discovery;
+    }
+
     get flow(): HomeyNS['flow'] {
         return this.homey.flow;
     }

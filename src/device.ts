@@ -83,66 +83,6 @@ export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extend
 
 }
 
-export class DeviceMDNSSD<TApp extends App<TApp>, TDriver extends Driver<TApp>> extends Device<TApp, TDriver> {
-    get discoveryId(): string {
-        throw new Error('Not implemented');
-    }
-
-    get discoveryResults(): Record<string, Homey.DiscoveryResultMDNSSD> {
-        return this.#results;
-    }
-
-    get discoveryStrategies(): string[] {
-        throw new Error('Not implemented');
-    }
-
-    readonly #results: Record<string, Homey.DiscoveryResultMDNSSD> = {};
-
-    async onInit(): Promise<void> {
-        await this.updateDiscoveryResults();
-
-        for (const strategyKey of this.discoveryStrategies) {
-            const strategy = this.homey.discovery.getStrategy(strategyKey);
-
-            strategy.on('result', async result => {
-                if (result.id !== this.discoveryId) {
-                    return;
-                }
-
-                await this.#setDiscoveryResult(strategyKey, result);
-                this.log(strategyKey, result);
-            });
-        }
-
-        await super.onInit();
-    }
-
-    async onDeviceDiscoveryResult(strategy: string, result: Homey.DiscoveryResultMDNSSD): Promise<void> {
-        this.log('Got a discovery update', strategy, result);
-    }
-
-    async updateDiscoveryResults(): Promise<void> {
-        for (const strategyKey of this.discoveryStrategies) {
-            const strategy = this.homey.discovery.getStrategy(strategyKey);
-            const results = strategy.getDiscoveryResults();
-
-            for (const [id, result] of Object.entries(results)) {
-                if (id !== this.discoveryId) {
-                    continue;
-                }
-
-                await this.#setDiscoveryResult(strategyKey, result as Homey.DiscoveryResultMDNSSD);
-            }
-        }
-    }
-
-    async #setDiscoveryResult(strategy: string, result: Homey.DiscoveryResultMDNSSD): Promise<void> {
-        this.#results[strategy] = result;
-
-        await this.onDeviceDiscoveryResult(strategy, result);
-    }
-}
-
 export class Driver<TApp extends App<TApp>> extends Homey.Driver {
 
     get app(): TApp {
