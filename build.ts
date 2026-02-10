@@ -1,12 +1,14 @@
-import { build, copy, dts } from '@basmilius/tools';
+import { build, clean, copy, dts } from '@basmilius/tools';
 
 await build({
     entrypoints: ['src/index.ts'],
     format: 'cjs',
     target: 'browser',
     external: ['homey'],
+    sourcemap: false,
     plugins: [
-        dts(),
-        copy('src/types.ts', 'dist/types.d.ts')
+        clean('dist'),
+        copy('src/types.ts', 'dist/types.d.ts'),
+        dts()
     ]
 });
