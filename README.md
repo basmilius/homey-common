@@ -10,8 +10,8 @@ This package contains common code shared across my Homey apps.
 
 ## ⭐️ Prerequisites
 
-- Bun >= 1.2.11
-- Node >= 23
+- Bun >= 1.3.0
+- Node >= 25
 
 ## 🚀 Getting started
 
