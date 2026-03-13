@@ -3,40 +3,60 @@ import type HomeyNS from 'homey/lib/Homey';
 import type { App } from './app';
 import type { Language } from './types';
 
+/**
+ * Base class for Homey devices.
+ *
+ * Provides typed access to the app and driver, convenience getters for common
+ * Homey APIs, and prefixed logging.
+ */
 export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extends Homey.Device {
 
+    /** The typed app instance. */
     get app(): TApp {
         return this.homey.app as TApp;
     }
 
+    /** The typed driver instance for this device. */
     get appDriver(): TDriver {
         return this.driver as TDriver;
     }
 
+    /** The device ID. */
     get id(): string {
         return this.getId();
     }
 
+    /** The device name. */
     get name(): string {
         return this.getName();
     }
 
+    /** Shortcut to `homey.dashboards`. */
     get dashboards(): HomeyNS['dashboards'] {
         return this.homey.dashboards;
     }
 
+    /** Shortcut to `homey.discovery`. */
     get discovery(): HomeyNS['discovery'] {
         return this.homey.discovery;
     }
 
+    /** Shortcut to `homey.flow`. */
     get flow(): HomeyNS['flow'] {
         return this.homey.flow;
     }
 
+    /** The current Homey language. */
     get language(): Language {
         return this.homey.i18n.getLanguage() as Language;
     }
 
+    /**
+     * Synchronizes the device's capabilities with the provided list.
+     * Adds missing capabilities and removes capabilities that are no longer needed.
+     *
+     * @param capabilities - The desired list of capability IDs.
+     */
     async removeOldCapabilities(capabilities: string[]): Promise<void> {
         const currentCapabilities = this.getCapabilities();
 
@@ -57,11 +77,11 @@ export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extend
         }
     }
 
-    public error(...args: any) {
+    public error(...args: any[]): void {
         super.error(`[${this.driver.id} ➔ ${this.name}]`, ...args);
     }
 
-    public log(...args: any) {
+    public log(...args: any[]): void {
         super.log(`[${this.driver.id} ➔ ${this.name}]`, ...args);
     }
 
@@ -87,24 +107,34 @@ export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extend
 
 }
 
+/**
+ * Base class for Homey drivers.
+ *
+ * Provides typed access to the app and convenience getters for common Homey APIs.
+ */
 export class Driver<TApp extends App<TApp>> extends Homey.Driver {
 
+    /** The typed app instance. */
     get app(): TApp {
         return this.homey.app as TApp;
     }
 
+    /** Shortcut to `homey.dashboards`. */
     get dashboards(): HomeyNS['dashboards'] {
         return this.homey.dashboards;
     }
 
+    /** Shortcut to `homey.discovery`. */
     get discovery(): HomeyNS['discovery'] {
         return this.homey.discovery;
     }
 
+    /** Shortcut to `homey.flow`. */
     get flow(): HomeyNS['flow'] {
         return this.homey.flow;
     }
 
+    /** The current Homey language. */
     get language(): Language {
         return this.homey.i18n.getLanguage() as Language;
     }

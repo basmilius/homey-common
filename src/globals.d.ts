@@ -1,8 +1,7 @@
-// @ts-ignore
-import type Homey from 'homey';
+export {};
 
 declare module 'homey' {
-    declare interface Device {
+    interface Device {
         getId(): string;
     }
 }
