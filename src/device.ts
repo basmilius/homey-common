@@ -57,7 +57,7 @@ export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extend
      *
      * @param capabilities - The desired list of capability IDs.
      */
-    async removeOldCapabilities(capabilities: string[]): Promise<void> {
+    async syncCapabilities(capabilities: string[]): Promise<void> {
         const currentCapabilities = this.getCapabilities();
 
         for (const capability of capabilities) {
