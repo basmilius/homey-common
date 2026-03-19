@@ -12,3 +12,13 @@ await build({
         dts()
     ]
 });
+
+await build({
+    entrypoints: ['src/data/index.ts'],
+    format: 'cjs',
+    target: 'browser',
+    sourcemap: false,
+    plugins: [
+        dts()
+    ]
+});

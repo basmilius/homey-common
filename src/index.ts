@@ -51,10 +51,5 @@ export {
 } from './registry';
 
 export {
-    colors,
-    icons
-} from './data';
-
-export {
     debounce
 } from './utils';

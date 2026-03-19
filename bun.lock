@@ -5,9 +5,9 @@
     "": {
       "name": "@basmilius/homey-common",
       "devDependencies": {
-        "@basmilius/tools": "^3.11.1",
-        "@basmilius/utils": "^3.11.1",
-        "@types/bun": "^1.3.10",
+        "@basmilius/tools": "^3.13.0",
+        "@basmilius/utils": "^3.13.0",
+        "@types/bun": "^1.3.11",
         "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
         "@types/luxon": "^3.7.1",
         "@types/node": "^25.5.0",
@@ -17,9 +17,9 @@
     },
   },
   "packages": {
-    "@basmilius/tools": ["@basmilius/tools@3.11.1", "", { "dependencies": { "oxc-transform": "^0.116.0" } }, "sha512-LeDYGGFCl+6D5lqKiTgnM9kORb0rFI4oByMjqUABohJYKyxsJT0b3QcMylz+KruRlf+NlY3Ys9q3eP2A7y8ovg=="],
+    "@basmilius/tools": ["@basmilius/tools@3.13.0", "", { "dependencies": { "oxc-transform": "^0.120.0" } }, "sha512-8VpeuYkvMPwhM++pvY9yfgcF5/+CAk0f3cnkb5PfQP1sTqqnD/loyHsMZrGm3Y3sgGX5HDwSfloLI2x3UE9s/g=="],
 
-    "@basmilius/utils": ["@basmilius/utils@3.11.1", "", { "dependencies": { "luxon": "^3.7.2" } }, "sha512-lEFOsMBC24Msf4Yia3148pvjoQqaHqc1zLoZ7GAZsqjvRjjbHgN8UyN0+hNl3Mkrjd09DBrGul20heNl/xPXHw=="],
+    "@basmilius/utils": ["@basmilius/utils@3.13.0", "", { "dependencies": { "luxon": "^3.7.2" } }, "sha512-m+teoGY9M1h3Raw8pfS7SEkrf3Ri1xbl0P5sBxqEdoGWagKYSvq1hGuu9LwYkqYrOSzC8yvivvKY0VU8yl/BMg=="],
 
     "@emnapi/core": ["@emnapi/core@1.7.1", "", { "dependencies": { "@emnapi/wasi-threads": "1.1.0", "tslib": "^2.4.0" } }, "sha512-o1uhUASyo921r2XtHYOHy7gdkGLge8ghBEQHMWmyJFoXlpU58kIrhhN3w26lpQb6dspetweapMn2CSNwQ8I4wg=="],
 
@@ -29,49 +29,49 @@
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.1.1", "", { "dependencies": { "@emnapi/core": "^1.7.1", "@emnapi/runtime": "^1.7.1", "@tybys/wasm-util": "^0.10.1" } }, "sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A=="],
 
-    "@oxc-transform/binding-android-arm-eabi": ["@oxc-transform/binding-android-arm-eabi@0.116.0", "", { "os": "android", "cpu": "arm" }, "sha512-Vf7CMaDsbII2TxssMNsKIDD7oNSV7OHvUJ6xiCYxbYhSFgznCzYwxyG5NRHqlwO+8dMF09LCFPyS8AGdKGNv2A=="],
+    "@oxc-transform/binding-android-arm-eabi": ["@oxc-transform/binding-android-arm-eabi@0.120.0", "", { "os": "android", "cpu": "arm" }, "sha512-NRSGsDmnVYWMnYq4LlxakKbZUFhV+A9cVIwQu/Iy/eZcADxT3eSRJ8ItLbAryMjuuWJiCQFdlGNMFzuMtHogzw=="],
 
-    "@oxc-transform/binding-android-arm64": ["@oxc-transform/binding-android-arm64@0.116.0", "", { "os": "android", "cpu": "arm64" }, "sha512-FB53dkrEZlAVO5L8dbRh23UmoQtw2X0gtGIN0aXhTrn/Oa02A7p3MU0bCNMS5hOJZyHDlPAKmEKIaXkCVMk0ig=="],
+    "@oxc-transform/binding-android-arm64": ["@oxc-transform/binding-android-arm64@0.120.0", "", { "os": "android", "cpu": "arm64" }, "sha512-CFKMV9r5kejf5rzl9ETfxIbIGv8N6UoMuh7QfAIHmbbJVcYD3vkjkT5dC5rK5Af07vIQ8573/UcXy77o9EwhPA=="],
 
-    "@oxc-transform/binding-darwin-arm64": ["@oxc-transform/binding-darwin-arm64@0.116.0", "", { "os": "darwin", "cpu": "arm64" }, "sha512-AWqvogz3c8YZ+YVSIrZm4vUHZTI3xjCncpawHFuqirPYCXavenb9WptZy30yLl2KiJuc4I2pn+Dhd/CNcUKRSw=="],
+    "@oxc-transform/binding-darwin-arm64": ["@oxc-transform/binding-darwin-arm64@0.120.0", "", { "os": "darwin", "cpu": "arm64" }, "sha512-hR/hV18iN4yVD8OKI6LwY4OiLUgCQzyDfCrsYot+h0is+mtWXHImQz6w3rToBKAHBot7bChUvgywj4rm+kjtMQ=="],
 
-    "@oxc-transform/binding-darwin-x64": ["@oxc-transform/binding-darwin-x64@0.116.0", "", { "os": "darwin", "cpu": "x64" }, "sha512-efFe19I+5na4WgcfJ0s532/7Z1ijHPJLXsPgxCqNcetmtmhPas1ynr5XwZ8yl2x9EsQ4iWQGkfMA82lHy7/s8w=="],
+    "@oxc-transform/binding-darwin-x64": ["@oxc-transform/binding-darwin-x64@0.120.0", "", { "os": "darwin", "cpu": "x64" }, "sha512-Ggzo6wiF4p4ukas741seePN/MQhgRHGSke0R24dKX0P75+heibQZWJYsYiJ5XYxdwoRXcH5BnDxKVzK6RWRDaw=="],
 
-    "@oxc-transform/binding-freebsd-x64": ["@oxc-transform/binding-freebsd-x64@0.116.0", "", { "os": "freebsd", "cpu": "x64" }, "sha512-fKO2b0jXsdkSjjH76GZlPrybpGKObAxW8qkl7hEihqIAxebzxzf3UI0Gu1Cmp+z/zd3YgGyDI4oPiabwtANvDg=="],
+    "@oxc-transform/binding-freebsd-x64": ["@oxc-transform/binding-freebsd-x64@0.120.0", "", { "os": "freebsd", "cpu": "x64" }, "sha512-XJBt0dqcIrz4gtjk1PxUjU78x5GJY8nXJR44g4+1Mxm6r+FvaZRfOe8lWt2uQAvVq8kvjIZ+Gj+jY1rL/aMMQg=="],
 
-    "@oxc-transform/binding-linux-arm-gnueabihf": ["@oxc-transform/binding-linux-arm-gnueabihf@0.116.0", "", { "os": "linux", "cpu": "arm" }, "sha512-O/xE52difAtp5uhI7avX5gO3ssb+TOsg9TYApffRZr5xunvN3t1MicrGxt0DVFlQbTMvltU5+tCZQw1uEibo0Q=="],
+    "@oxc-transform/binding-linux-arm-gnueabihf": ["@oxc-transform/binding-linux-arm-gnueabihf@0.120.0", "", { "os": "linux", "cpu": "arm" }, "sha512-NdMHmPQihRqEbBPmTtj9BC6KRUfsq/S53gBd3tOtByrX1Bdcvac74QRyTRZPxqLYSA8fP+5bEIY56qjwVZW66A=="],
 
-    "@oxc-transform/binding-linux-arm-musleabihf": ["@oxc-transform/binding-linux-arm-musleabihf@0.116.0", "", { "os": "linux", "cpu": "arm" }, "sha512-0XqeERexv6djB6kUtS3gfSyzgmsZiFJItgbeum39mmL8zgzRFpkRj319A1mNt+Gv2S1CokqB/nRDeBUU0fYYfw=="],
+    "@oxc-transform/binding-linux-arm-musleabihf": ["@oxc-transform/binding-linux-arm-musleabihf@0.120.0", "", { "os": "linux", "cpu": "arm" }, "sha512-0J9FCV9pSg/9pWGv6tg+XTiLeYVnUio2Kv0Yi+40Q3dUspFhY4fmlXWjswcZ5DMZqDN/ScXs/8ToI9qgc5EJjg=="],
 
-    "@oxc-transform/binding-linux-arm64-gnu": ["@oxc-transform/binding-linux-arm64-gnu@0.116.0", "", { "os": "linux", "cpu": "arm64" }, "sha512-DfyFbtOSBlRmmk+kEPP61xuvzPNNYd03IePInP9pkRckmoqS6GhUHnNkXw7BdA6bxBlXrAKNSZbUjnJcMS939Q=="],
+    "@oxc-transform/binding-linux-arm64-gnu": ["@oxc-transform/binding-linux-arm64-gnu@0.120.0", "", { "os": "linux", "cpu": "arm64" }, "sha512-KqiqhLCfgqNMNvrPzPq6PQMHSEnqi1bggNVCc0LCzTstyqCJJkdb4apkzscStsMwXqIXitjilBnPwIf/ZPAPAQ=="],
 
-    "@oxc-transform/binding-linux-arm64-musl": ["@oxc-transform/binding-linux-arm64-musl@0.116.0", "", { "os": "linux", "cpu": "arm64" }, "sha512-XvzxTwhECdcCnbgoMQW9LXxgohAfzaqzHjRvd+SEdkdYOjch9wuXA/rFGe7pkk0JLHB3cWGnUiMSX2Vu6ZBxcw=="],
+    "@oxc-transform/binding-linux-arm64-musl": ["@oxc-transform/binding-linux-arm64-musl@0.120.0", "", { "os": "linux", "cpu": "arm64" }, "sha512-VMSt+qfZZkjaE9ylneBJO/+ZH/2o+HjU4/tE21Frtk6aZguF5DbtFNQ98fu7UBPOxktOETjTFVWn32LtcEX2yw=="],
 
-    "@oxc-transform/binding-linux-ppc64-gnu": ["@oxc-transform/binding-linux-ppc64-gnu@0.116.0", "", { "os": "linux", "cpu": "ppc64" }, "sha512-AdqcXIn2tQmVLVisKzbeIZjzsBmc6JA+kfx32YsL5JD0ylmCCZz8W5mCXPX+BkrzdKHjI+17KbpUptBhpZPSLg=="],
+    "@oxc-transform/binding-linux-ppc64-gnu": ["@oxc-transform/binding-linux-ppc64-gnu@0.120.0", "", { "os": "linux", "cpu": "ppc64" }, "sha512-Zgd7XdX89w9HaDzd1+AWcpwa1Jk45ZO0OU+iHs/1ZCkCtFLLlKMgBKa7pimKLmC9GFrjxcWatOBL1CThVaX2pQ=="],
 
-    "@oxc-transform/binding-linux-riscv64-gnu": ["@oxc-transform/binding-linux-riscv64-gnu@0.116.0", "", { "os": "linux", "cpu": "none" }, "sha512-7UWXpx8Y4WJ64ezOfPcqqVaC4HbZ5Pjuf09pIXYMFwWDJMxVYXgJG/VKDsbc3gH4zGKkQfSuga7yC26NcoPZiQ=="],
+    "@oxc-transform/binding-linux-riscv64-gnu": ["@oxc-transform/binding-linux-riscv64-gnu@0.120.0", "", { "os": "linux", "cpu": "none" }, "sha512-WRM5QKnrcgriGZZScesBydkTPGY5fsbfZLvMRPzGsX7DJfB0KhmPK/jszzRgGWPZe+oh/89v3jlziljeiM5iDQ=="],
 
-    "@oxc-transform/binding-linux-riscv64-musl": ["@oxc-transform/binding-linux-riscv64-musl@0.116.0", "", { "os": "linux", "cpu": "none" }, "sha512-Tu8zqxccV/zczmaxohSdpabe2yRU8giywDiqjMCwAT2MZORZ7DRtBQgPQ1QyG9e4U26RqsUWk5dz6uZRGuJnQQ=="],
+    "@oxc-transform/binding-linux-riscv64-musl": ["@oxc-transform/binding-linux-riscv64-musl@0.120.0", "", { "os": "linux", "cpu": "none" }, "sha512-j8N+aWybDqNTYnTJMLd4eJaGxrbt/9LfzpjkNJtkLWleCaOEXTx2xlJecqepOB1UyIGfs0jm2Ej085Y7iN4rbw=="],
 
-    "@oxc-transform/binding-linux-s390x-gnu": ["@oxc-transform/binding-linux-s390x-gnu@0.116.0", "", { "os": "linux", "cpu": "s390x" }, "sha512-CRlr6ymctdxwlcjWTWH7DIIVkaxWm/8gpOkVUx2BGGd3miLQ+Oxi3azg9ldQCiyU2hefKoLlsbkp73Mwrirlcg=="],
+    "@oxc-transform/binding-linux-s390x-gnu": ["@oxc-transform/binding-linux-s390x-gnu@0.120.0", "", { "os": "linux", "cpu": "s390x" }, "sha512-Xab3JZsLvumRAMEutpSBWa3VoV+lAtArwUbh9BZsMhmuaizKsOKBW32cw1tjWlaaCNegrQpw4EZ+muCLKiVdJA=="],
 
-    "@oxc-transform/binding-linux-x64-gnu": ["@oxc-transform/binding-linux-x64-gnu@0.116.0", "", { "os": "linux", "cpu": "x64" }, "sha512-ltGhSvim+dSRroHgEPSxXzaGaeXQv+p9OGf25lCwrXzvr0+wwmck3I3XM3F0PWH8H3eIUi9L4dZedF4NhkQTig=="],
+    "@oxc-transform/binding-linux-x64-gnu": ["@oxc-transform/binding-linux-x64-gnu@0.120.0", "", { "os": "linux", "cpu": "x64" }, "sha512-ewRGO9hsl3AQ4FvbollEDzoAEGecyECnX75k9k89iBXYxX/4FQgBjUne4M4on4CBiBd8iplGSh8fT0+ZaJJkFg=="],
 
-    "@oxc-transform/binding-linux-x64-musl": ["@oxc-transform/binding-linux-x64-musl@0.116.0", "", { "os": "linux", "cpu": "x64" }, "sha512-YVwQbAJwpzKkR5robMVDkmfCO2TYH1x29fFap2pXVSp8pHCD01S9DnrQPKy5jevKFrQXJZleihvOXsmbEQCOTA=="],
+    "@oxc-transform/binding-linux-x64-musl": ["@oxc-transform/binding-linux-x64-musl@0.120.0", "", { "os": "linux", "cpu": "x64" }, "sha512-Y8RASUrQzLK/iHUp7UoqqMEmyZbGICHA6soBgQ84DxoTQH7F2wf+Vjv41PQsEYEpBehIAwqKBBs9ag7QVVxA7w=="],
 
-    "@oxc-transform/binding-openharmony-arm64": ["@oxc-transform/binding-openharmony-arm64@0.116.0", "", { "os": "none", "cpu": "arm64" }, "sha512-gQ51zTtFFg0YFGSI0i0AxB9FIUkeYQAkyJE3hMkvzzQQa0luOgEWbTC5vym5AL3Jab/VSvAQ46i9hovW33FbCQ=="],
+    "@oxc-transform/binding-openharmony-arm64": ["@oxc-transform/binding-openharmony-arm64@0.120.0", "", { "os": "none", "cpu": "arm64" }, "sha512-P+LfDVoePi7FtMzN3NwW+qjL5DDxKMAoyyCkxXdjtGbaDyGPHMWlKmij/ITC4KTqo5KwlQp8trD0EaOpf1EcKg=="],
 
-    "@oxc-transform/binding-wasm32-wasi": ["@oxc-transform/binding-wasm32-wasi@0.116.0", "", { "dependencies": { "@napi-rs/wasm-runtime": "^1.1.1" }, "cpu": "none" }, "sha512-FGZyQxbghADcBsaLIAl7glvXfSjMxYEFsnxu9ESeDXJI/Fn7ck7w5eYAL/FfGFQFNokC2lD2VLKUC94eAyLxuQ=="],
+    "@oxc-transform/binding-wasm32-wasi": ["@oxc-transform/binding-wasm32-wasi@0.120.0", "", { "dependencies": { "@napi-rs/wasm-runtime": "^1.1.1" }, "cpu": "none" }, "sha512-NCRVNsVvEKzQ+jTsyklYTywJT/MRnxib7GfqmyEAwYikMeEXAiytvrccW5/ztAB1Hj2JpulPtWr47ZlXgTgXnA=="],
 
-    "@oxc-transform/binding-win32-arm64-msvc": ["@oxc-transform/binding-win32-arm64-msvc@0.116.0", "", { "os": "win32", "cpu": "arm64" }, "sha512-NTAfRJ12dV1oxGmko+7ntFE4vbeLMQn6FNXtmDNtb8YvzPLGSqqoBr86ZAAXmfC00j0Ku4h2MJP5CybpbgWKxA=="],
+    "@oxc-transform/binding-win32-arm64-msvc": ["@oxc-transform/binding-win32-arm64-msvc@0.120.0", "", { "os": "win32", "cpu": "arm64" }, "sha512-Yn56/HKBMStMvaiOc4Oc4O0NH+SLvZy3y0XfXjHlSgmx1UPf6xrip8BDLrDUphs4uQKDId8s3o2vmCzhYWEplg=="],
 
-    "@oxc-transform/binding-win32-ia32-msvc": ["@oxc-transform/binding-win32-ia32-msvc@0.116.0", "", { "os": "win32", "cpu": "ia32" }, "sha512-X+XKp3Y0Xus7yLG0XsYA4oEf/wK1zSEhUY2f80OTQlOCYII7DLjVaR8Y3lA+UG3WhinEtK3ykh4T97q5zUyxVQ=="],
+    "@oxc-transform/binding-win32-ia32-msvc": ["@oxc-transform/binding-win32-ia32-msvc@0.120.0", "", { "os": "win32", "cpu": "ia32" }, "sha512-tj+Bs8EH2nUPbhNnoTjM0KTIWKlsbfEe7+VQjNlBSSeArS3A8ksW2BhHf6S3WYgEsmSBSeOoRNyDoUrrxmrs/A=="],
 
-    "@oxc-transform/binding-win32-x64-msvc": ["@oxc-transform/binding-win32-x64-msvc@0.116.0", "", { "os": "win32", "cpu": "x64" }, "sha512-9gfpNUeFMAAatZ21ygvcmRT55xNHF1JbBobFKjX2ZDF43QiUAQYhUXS9PeekYsMbDtoocMMydh+380hZ5trjHQ=="],
+    "@oxc-transform/binding-win32-x64-msvc": ["@oxc-transform/binding-win32-x64-msvc@0.120.0", "", { "os": "win32", "cpu": "x64" }, "sha512-rX6VYwSwjENgteKnnzb36Cpa06TtJ0EdDm2pVdi8HOJgz40O++lTUbRtQz/93w07MnItGNTwxB4hgBGCaqizuQ=="],
 
     "@tybys/wasm-util": ["@tybys/wasm-util@0.10.1", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg=="],
 
-    "@types/bun": ["@types/bun@1.3.10", "", { "dependencies": { "bun-types": "1.3.10" } }, "sha512-0+rlrUrOrTSskibryHbvQkDOWRJwJZqZlxrUs1u4oOoTln8+WIXBPmAuCF35SWB2z4Zl3E84Nl/D0P7803nigQ=="],
+    "@types/bun": ["@types/bun@1.3.11", "", { "dependencies": { "bun-types": "1.3.11" } }, "sha512-5vPne5QvtpjGpsGYXiFyycfpDF2ECyPcTSsFBMa0fraoxiQyMJ3SmuQIGhzPg2WJuWxVBoxWJ2kClYTcw/4fAg=="],
 
     "@types/homey": ["homey-apps-sdk-v3-types@0.3.12", "", { "dependencies": { "@types/node": "^14.14.20" } }, "sha512-xr275VoF7FAiTi6PzElqHWpuGgSBY9hZFZsKeCTA4rluopf8sVk6zUPa+giSRSTiTrN3N3QjmHD5lUoNVwYd4g=="],
 
@@ -79,11 +79,11 @@
 
     "@types/node": ["@types/node@25.5.0", "", { "dependencies": { "undici-types": "~7.18.0" } }, "sha512-jp2P3tQMSxWugkCUKLRPVUpGaL5MVFwF8RDuSRztfwgN1wmqJeMSbKlnEtQqU8UrhTmzEmZdu2I6v2dpp7XIxw=="],
 
-    "bun-types": ["bun-types@1.3.10", "", { "dependencies": { "@types/node": "*" } }, "sha512-tcpfCCl6XWo6nCVnpcVrxQ+9AYN1iqMIzgrSKYMB/fjLtV2eyAVEg7AxQJuCq/26R6HpKWykQXuSOq/21RYcbg=="],
+    "bun-types": ["bun-types@1.3.11", "", { "dependencies": { "@types/node": "*" } }, "sha512-1KGPpoxQWl9f6wcZh57LvrPIInQMn2TQ7jsgxqpRzg+l0QPOFvJVH7HmvHo/AiPgwXy+/Thf6Ov3EdVn1vOabg=="],
 
     "luxon": ["luxon@3.7.2", "", {}, "sha512-vtEhXh/gNjI9Yg1u4jX/0YVPMvxzHuGgCm6tC5kZyb08yjGWGnqAjGJvcXbqQR2P3MyMEFnRbpcdFS6PBcLqew=="],
 
-    "oxc-transform": ["oxc-transform@0.116.0", "", { "optionalDependencies": { "@oxc-transform/binding-android-arm-eabi": "0.116.0", "@oxc-transform/binding-android-arm64": "0.116.0", "@oxc-transform/binding-darwin-arm64": "0.116.0", "@oxc-transform/binding-darwin-x64": "0.116.0", "@oxc-transform/binding-freebsd-x64": "0.116.0", "@oxc-transform/binding-linux-arm-gnueabihf": "0.116.0", "@oxc-transform/binding-linux-arm-musleabihf": "0.116.0", "@oxc-transform/binding-linux-arm64-gnu": "0.116.0", "@oxc-transform/binding-linux-arm64-musl": "0.116.0", "@oxc-transform/binding-linux-ppc64-gnu": "0.116.0", "@oxc-transform/binding-linux-riscv64-gnu": "0.116.0", "@oxc-transform/binding-linux-riscv64-musl": "0.116.0", "@oxc-transform/binding-linux-s390x-gnu": "0.116.0", "@oxc-transform/binding-linux-x64-gnu": "0.116.0", "@oxc-transform/binding-linux-x64-musl": "0.116.0", "@oxc-transform/binding-openharmony-arm64": "0.116.0", "@oxc-transform/binding-wasm32-wasi": "0.116.0", "@oxc-transform/binding-win32-arm64-msvc": "0.116.0", "@oxc-transform/binding-win32-ia32-msvc": "0.116.0", "@oxc-transform/binding-win32-x64-msvc": "0.116.0" } }, "sha512-8V1nWua+1JuWeVkUIoLrkI4B/ua0/yembsWQnzxWjcom3DNE07byPJh7zPReZnK/MZ0d+bkvudcXJbSWv2tZpA=="],
+    "oxc-transform": ["oxc-transform@0.120.0", "", { "optionalDependencies": { "@oxc-transform/binding-android-arm-eabi": "0.120.0", "@oxc-transform/binding-android-arm64": "0.120.0", "@oxc-transform/binding-darwin-arm64": "0.120.0", "@oxc-transform/binding-darwin-x64": "0.120.0", "@oxc-transform/binding-freebsd-x64": "0.120.0", "@oxc-transform/binding-linux-arm-gnueabihf": "0.120.0", "@oxc-transform/binding-linux-arm-musleabihf": "0.120.0", "@oxc-transform/binding-linux-arm64-gnu": "0.120.0", "@oxc-transform/binding-linux-arm64-musl": "0.120.0", "@oxc-transform/binding-linux-ppc64-gnu": "0.120.0", "@oxc-transform/binding-linux-riscv64-gnu": "0.120.0", "@oxc-transform/binding-linux-riscv64-musl": "0.120.0", "@oxc-transform/binding-linux-s390x-gnu": "0.120.0", "@oxc-transform/binding-linux-x64-gnu": "0.120.0", "@oxc-transform/binding-linux-x64-musl": "0.120.0", "@oxc-transform/binding-openharmony-arm64": "0.120.0", "@oxc-transform/binding-wasm32-wasi": "0.120.0", "@oxc-transform/binding-win32-arm64-msvc": "0.120.0", "@oxc-transform/binding-win32-ia32-msvc": "0.120.0", "@oxc-transform/binding-win32-x64-msvc": "0.120.0" } }, "sha512-qsALl0xO6stW/ijkwlQnUZjx7pkradESNpObXZIALtD8HySVNjgZvMVKCAuUYnDxeW1JQkfbbdQvKN28tdvH4g=="],
 
     "tslib": ["tslib@2.8.1", "", {}, "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="],
 
