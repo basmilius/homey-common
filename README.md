@@ -35,7 +35,12 @@ bun add @basmilius/homey-common
 | `FlowAutocompleteArgumentProvider`                  | Autocomplete provider that collects values from existing flow card arguments |
 | `action` / `condition` / `trigger` / `autocomplete` | Decorators for assigning flow card IDs                                       |
 | `DateTime` / `Luxon`                                | Re-exported from [luxon](https://moment.github.io/luxon/)                    |
-| `colors` / `icons`                                  | Predefined color palette and Font Awesome icon set                           |
+
+**`@basmilius/homey-common/data`**
+
+| Export              | Description                                        |
+|---------------------|----------------------------------------------------|
+| `colors` / `icons`  | Predefined color palette and Font Awesome icon set |
 
 ---
 
@@ -242,7 +247,7 @@ this.clearInterval(interval);
 ### Data
 
 ```typescript
-import { colors, icons } from '@basmilius/homey-common';
+import { colors, icons } from '@basmilius/homey-common/data';
 
 // colors: { hex: string; label: string }[]
 // icons:  { id: string; name: string; unicode: string }[]
