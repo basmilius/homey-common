@@ -1,7 +1,7 @@
 import type { App } from './app';
+import type { Device } from './device';
 import type { FlowActionEntity, FlowAutocompleteProvider, FlowConditionEntity, FlowDeviceTriggerEntity, FlowTriggerEntity } from './flow';
 import type { Action, AutocompleteProvider, Condition, DeviceTrigger, Trigger } from './types';
-import type { Device } from './device';
 
 /**
  * Central registry for all flow card entities in a Homey app.
@@ -12,27 +12,27 @@ import type { Device } from './device';
 export class Registry<TApp extends App<TApp>> {
 
     /** All registered action entities. */
-    get actions(): FlowActionEntity<TApp>[] {
+    get actions(): readonly FlowActionEntity<TApp>[] {
         return this.#actions;
     }
 
     /** All registered autocomplete providers. */
-    get autocompleteProviders(): FlowAutocompleteProvider<TApp>[] {
+    get autocompleteProviders(): readonly FlowAutocompleteProvider<TApp>[] {
         return this.#autocompleteProviders;
     }
 
     /** All registered condition entities. */
-    get conditions(): FlowConditionEntity<TApp>[] {
+    get conditions(): readonly FlowConditionEntity<TApp>[] {
         return this.#conditions;
     }
 
     /** All registered device trigger entities. */
-    get deviceTriggers(): FlowDeviceTriggerEntity<TApp, any>[] {
+    get deviceTriggers(): readonly FlowDeviceTriggerEntity<TApp, any>[] {
         return this.#deviceTriggers;
     }
 
     /** All registered global trigger entities. */
-    get triggers(): FlowTriggerEntity<TApp>[] {
+    get triggers(): readonly FlowTriggerEntity<TApp>[] {
         return this.#triggers;
     }
 
@@ -62,11 +62,24 @@ export class Registry<TApp extends App<TApp>> {
      * @param id - The flow card ID.
      * @param onRun - The function to call when the action is executed.
      */
-    actionFunction<TArgs = any, TResult = any>(id: string, onRun: (args: TArgs) => TResult): void {
+    actionFunction<TArgs = unknown, TResult = unknown>(id: string, onRun: (args: TArgs) => TResult): void {
         const action = this.#app.homey.flow.getActionCard(id);
         action.registerRunListener(onRun);
 
         this.#app.homey.log(`[actionFunction#${id}] Registered.`);
+    }
+
+    /**
+     * Registers a flow condition directly using a run listener function, without a class.
+     *
+     * @param id - The flow card ID.
+     * @param onRun - The function to call when the condition is evaluated.
+     */
+    conditionFunction<TArgs = unknown>(id: string, onRun: (args: TArgs) => boolean | Promise<boolean>): void {
+        const condition = this.#app.homey.flow.getConditionCard(id);
+        condition.registerRunListener(onRun);
+
+        this.#app.homey.log(`[conditionFunction#${id}] Registered.`);
     }
 
     /**
@@ -153,6 +166,26 @@ export class Registry<TApp extends App<TApp>> {
      */
     findTrigger<TEntity extends FlowTriggerEntity<TApp>>(trigger: Trigger<TApp, TEntity>): TEntity | undefined {
         return this.#triggers.find(a => a instanceof trigger) as TEntity;
+    }
+
+    /**
+     * Finds and fires a registered global trigger entity.
+     *
+     * @param trigger - The trigger entity class to look up.
+     * @param args - The arguments to pass to the trigger's {@link FlowTriggerEntity.trigger} method.
+     */
+    async fireTrigger<TEntity extends FlowTriggerEntity<TApp>>(trigger: Trigger<TApp, TEntity>, ...args: Parameters<TEntity['trigger']>): Promise<void> {
+        await this.findTrigger(trigger)?.trigger(...(args as [unknown, unknown?]));
+    }
+
+    /**
+     * Finds and fires a registered device trigger entity.
+     *
+     * @param trigger - The trigger entity class to look up.
+     * @param args - The arguments to pass to the trigger's {@link FlowDeviceTriggerEntity.trigger} method.
+     */
+    async fireDeviceTrigger<TDevice extends Device<TApp, any>, TEntity extends FlowDeviceTriggerEntity<TApp, TDevice>>(trigger: DeviceTrigger<TApp, TDevice, TEntity>, ...args: Parameters<TEntity['trigger']>): Promise<void> {
+        await this.findDeviceTrigger(trigger)?.trigger(...(args as [TDevice, unknown, unknown?]));
     }
 
 }

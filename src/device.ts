@@ -46,6 +46,11 @@ export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extend
         return this.homey.flow;
     }
 
+    /** Shortcut to `homey.settings`. */
+    get settings(): HomeyNS['settings'] {
+        return this.homey.settings;
+    }
+
     /** The current Homey language. */
     get language(): Language {
         return this.homey.i18n.getLanguage() as Language;
@@ -77,11 +82,11 @@ export class Device<TApp extends App<TApp>, TDriver extends Driver<TApp>> extend
         }
     }
 
-    public error(...args: any[]): void {
+    public error(...args: unknown[]): void {
         super.error(`[${this.driver.id} ➔ ${this.name}]`, ...args);
     }
 
-    public log(...args: any[]): void {
+    public log(...args: unknown[]): void {
         super.log(`[${this.driver.id} ➔ ${this.name}]`, ...args);
     }
 
@@ -132,6 +137,11 @@ export class Driver<TApp extends App<TApp>> extends Homey.Driver {
     /** Shortcut to `homey.flow`. */
     get flow(): HomeyNS['flow'] {
         return this.homey.flow;
+    }
+
+    /** Shortcut to `homey.settings`. */
+    get settings(): HomeyNS['settings'] {
+        return this.homey.settings;
     }
 
     /** The current Homey language. */

@@ -36,8 +36,7 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
         this.#card = this.resolveCard();
 
         this.onInit()
-            .then()
-            .catch(console.error.bind(console));
+            .catch(err => this.log('Failed to initialize.', err));
     }
 
     /**
@@ -138,7 +137,7 @@ export abstract class FlowDeviceTriggerEntity<TApp extends App<TApp>, TDevice ex
      * @param state - The state to pass to condition cards.
      * @param tokens - Optional token values to pass to the flow.
      */
-    async trigger(device: TDevice, state: TState, tokens?: TTokens): Promise<any> {
+    async trigger(device: TDevice, state: TState, tokens?: TTokens): Promise<void> {
         return this.card.trigger(device, tokens as object, state as object);
     }
 
@@ -164,7 +163,7 @@ export abstract class FlowTriggerEntity<TApp extends App<TApp>, TArgs = unknown,
      * @param state - The state to pass to condition cards.
      * @param tokens - Optional token values to pass to the flow.
      */
-    async trigger(state: TState, tokens?: TTokens): Promise<any> {
+    async trigger(state: TState, tokens?: TTokens): Promise<void> {
         return this.card.trigger(tokens as object, state as object);
     }
 
@@ -235,7 +234,15 @@ export abstract class FlowAutocompleteArgumentProvider<TApp extends App<TApp>, T
     abstract getCards(): FlowCard[];
 
     /** Maps a raw argument value to the desired output type. */
-    abstract mapArgument(value: any): TValue;
+    abstract mapArgument(value: unknown): TValue;
+
+    /**
+     * Determines whether two values are considered duplicates.
+     * Override this method to provide custom comparison logic for non-primitive values.
+     */
+    protected isDuplicate(a: TValue, b: TValue): boolean {
+        return a === b;
+    }
 
     async onInit(): Promise<void> {
         this.#cards = this.getCards();
@@ -250,7 +257,7 @@ export abstract class FlowAutocompleteArgumentProvider<TApp extends App<TApp>, T
             .filter((result): result is PromiseFulfilledResult<any[]> => result.status === 'fulfilled')
             .flatMap(result => result.value)
             .map(value => this.mapArgument(value))
-            .filter((value, index, arr) => arr.indexOf(value) === index);
+            .filter((value, index, arr) => arr.findIndex(v => this.isDuplicate(v, value)) === index);
     }
 
 }
