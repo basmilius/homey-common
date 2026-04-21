@@ -256,7 +256,14 @@ export abstract class FlowAutocompleteArgumentProvider<TApp extends App<TApp>, T
         this.#values = results
             .filter((result): result is PromiseFulfilledResult<any[]> => result.status === 'fulfilled')
             .flatMap(result => result.value)
-            .map(value => this.mapArgument(value))
+            .flatMap(value => {
+                try {
+                    const mapped = this.mapArgument(value);
+                    return mapped != null ? [mapped] : [];
+                } catch {
+                    return [];
+                }
+            })
             .filter((value, index, arr) => arr.findIndex(v => this.isDuplicate(v, value)) === index);
     }
 
