@@ -28,7 +28,7 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
     }
 
     readonly #card: TCard;
-    #autocompleteProvider?: FlowAutocompleteProvider<TApp>;
+    readonly #autocompleteProviders = new Set<FlowAutocompleteProvider<TApp>>();
 
     constructor(app: TApp) {
         super(app);
@@ -56,9 +56,11 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
     /** Called when the flow card is executed. Must return the result appropriate for the card type. */
     abstract onRun(args: TArgs, state: TState): Promise<TResult>;
 
-    /** Called when the flow card configuration is updated. Triggers the autocomplete provider if set. */
+    /** Called when the flow card configuration is updated. Triggers all registered autocomplete providers. */
     async onUpdate(): Promise<void> {
-        await this.#autocompleteProvider?.triggerUpdate();
+        await Promise.allSettled([
+            ...this.#autocompleteProviders
+        ].map(provider => provider.triggerUpdate()));
     }
 
     log(...args: unknown[]): void {
@@ -78,7 +80,7 @@ export abstract class FlowEntity<TApp extends App<TApp>, TCard extends Homey.Flo
             throw new Error(`Unable to register autocomplete for ${this.type}#${this.id}. The provider was not registered.`);
         }
 
-        this.#autocompleteProvider = provider;
+        this.#autocompleteProviders.add(provider);
         this.#card.registerArgumentAutocompleteListener(name, provider.find.bind(provider));
     }
 
