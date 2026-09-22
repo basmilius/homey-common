@@ -21,6 +21,7 @@
     ],
     "files": [
         "dist",
+        "tsconfig.app.json",
         "CODEOWNERS",
         "LICENSE"
     ],
@@ -44,6 +45,9 @@
             "default": "./dist/data/index.js"
         },
         "./*": "./*"
+    },
+    "dependencies": {
+        "@tsconfig/node22": "^22.0.6"
     },
     "devDependencies": {
         "@basmilius/tools": "^3.35.0",

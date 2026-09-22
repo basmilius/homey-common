@@ -36,6 +36,21 @@ bun add @basmilius/homey-common
 | `action` / `condition` / `trigger` / `autocomplete` | Decorators for assigning flow card IDs                                       |
 | `DateTime` / `Luxon`                                | Re-exported from [luxon](https://moment.github.io/luxon/)                    |
 
+**`@basmilius/homey-common/tsconfig.app.json`**
+
+The TypeScript configuration every Homey app shares. Extend it and add only what the app itself needs:
+
+```json
+{
+    "extends": "@basmilius/homey-common/tsconfig.app.json",
+    "exclude": [
+        "settings-ui"
+    ]
+}
+```
+
+It builds on `@tsconfig/node22` and sets `experimentalDecorators` (required by the flow card decorators), `lib: ["dom", "es2024"]`, `types: ["node"]`, `resolveJsonModule` and an `outDir` of `.homeybuild/`.
+
 **`@basmilius/homey-common/data`**
 
 | Export              | Description                                        |

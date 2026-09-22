@@ -1,0 +1,17 @@
+{
+    "$schema": "https://www.schemastore.org/tsconfig",
+    "extends": "@tsconfig/node22/tsconfig.json",
+    "compilerOptions": {
+        "allowJs": false,
+        "experimentalDecorators": true,
+        "lib": [
+            "dom",
+            "es2024"
+        ],
+        "types": [
+            "node"
+        ],
+        "outDir": "${configDir}/.homeybuild",
+        "resolveJsonModule": true
+    }
+}
