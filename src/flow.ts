@@ -224,12 +224,18 @@ export abstract class FlowAutocompleteProvider<TApp extends App<TApp>> extends S
  */
 export abstract class FlowAutocompleteArgumentProvider<TApp extends App<TApp>, TValue = string> extends FlowAutocompleteProvider<TApp> {
 
+    /** Whether the last update read all cards successfully. Cleanup based on {@link values} is only safe when true. */
+    get isComplete(): boolean {
+        return this.#isComplete;
+    }
+
     /** The deduplicated list of collected argument values. */
     get values(): TValue[] {
         return this.#values;
     }
 
     #cards: FlowCard[] = [];
+    #isComplete: boolean = false;
     #values: TValue[] = [];
 
     /** Returns the flow cards whose argument values should be collected. */
@@ -254,10 +260,16 @@ export abstract class FlowAutocompleteArgumentProvider<TApp extends App<TApp>, T
 
     async update(): Promise<void> {
         const results = await Promise.allSettled(this.#cards.map(card => card.getArgumentValues()));
+        const failed = this.#cards.filter((_, index) => results[index].status === 'rejected');
+
+        if (failed.length > 0) {
+            this.#isComplete = false;
+            this.log(`Failed to read arguments of ${failed.map(card => card.id).join(', ')}, keeping the previous values.`);
+            return;
+        }
 
         this.#values = results
-            .filter((result): result is PromiseFulfilledResult<any[]> => result.status === 'fulfilled')
-            .flatMap(result => result.value)
+            .flatMap(result => (result as PromiseFulfilledResult<unknown[]>).value)
             .flatMap(value => {
                 try {
                     const mapped = this.mapArgument(value);
@@ -267,6 +279,7 @@ export abstract class FlowAutocompleteArgumentProvider<TApp extends App<TApp>, T
                 }
             })
             .filter((value, index, arr) => arr.findIndex(v => this.isDuplicate(v, value)) === index);
+        this.#isComplete = true;
     }
 
 }
